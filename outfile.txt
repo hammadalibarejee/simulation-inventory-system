@@ -1,0 +1,3 @@
+ holding cost shortage cost cost6.1f
+
+,6, 7, 8, 9N
