@@ -160,25 +160,29 @@ function uniform(a, b) {
     /* Return a U(a,b) random variate. */
     return a + lcgrand(1) * (b - a);
 }
+var emptyTextFile = function () {
+    fs.writeFileSync('output.txt', '');
+};
 var writeFileFunc = function (fileName, Message) {
-    fs.writeFile(fileName, Message, function (err) {
-        if (err) {
-            return console.error(err);
-        }
-        // If no error the remaining code executes
-        // console.log(" Finished writing ");
-        // console.log("Reading the data that's written");
-        // Reading the file
-        fs.readFile(fileName, function (err, data) {
-            if (err) {
-                return console.error(err);
-            }
-            else {
-                return data;
-            }
-            //   console.log("Data read : " + data.toString());
-        });
-    });
+    fs.appendFileSync(fileName, Message
+    // function (err) {
+    // if (err) {
+    //     return console.error(err);
+    // }
+    // If no error the remaining code executes
+    // console.log(" Finished writing ");
+    // console.log("Reading the data that's written");
+    // Reading the file
+    //     fs.readFile(fileName, function (err, data) {
+    //         if (err) {
+    //             return console.error(err);
+    //         } else {
+    //             return data;
+    //         }
+    //         //   console.log("Data read : " + data.toString());
+    //     });
+    // }
+    );
 };
 function timing() {
     var i = 0;
@@ -220,7 +224,9 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     var num_policies, file, inputFileDataArray, i, prob_distrib_demand_1, i, i, i;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, readFile('infile.txt')];
+            case 0:
+                emptyTextFile();
+                return [4 /*yield*/, readFile('infile.txt')];
             case 1:
                 file = _a.sent();
                 console.log("File Data------------------------------", file);
@@ -248,22 +254,22 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 for (i = 1; i <= num_values_demand; ++i)
                     writeFileFunc('output.txt', "\n\n %f ".concat(prob_distrib_demand));
                 /* Write report heading and input parameters. */
-                writeFileFunc('outfile.txt', "Single-product inventory system\n\n");
-                writeFileFunc('outfile.txt', "Initial inventory level ".concat(initial_inv_level, " items\n\n "));
-                writeFileFunc('outfile.txt', "Number of demand sizes%25d   ".concat(num_values_demand, "\n\n"));
-                writeFileFunc('outfile.txt', "Distribution function of demand sizes ");
+                writeFileFunc('output.txt', "Single-product inventory system\n\n");
+                writeFileFunc('output.txt', "Initial inventory level ".concat(initial_inv_level, " items\n\n "));
+                writeFileFunc('output.txt', "Number of demand sizes%25d   ".concat(num_values_demand, "\n\n"));
+                writeFileFunc('output.txt', "Distribution function of demand sizes ");
                 for (i = 1; i <= num_values_demand; ++i) {
-                    writeFileFunc('outfile.txt', "%8.3f ".concat(prob_distrib_demand));
+                    writeFileFunc('output.txt', "%8.3f ".concat(prob_distrib_demand));
                 }
-                writeFileFunc('outfile.txt', "\n\nMean interdemand time%26.2f  ".concat(mean_interdemand, "\n\n"));
-                writeFileFunc('outfile.txt', "Delivery lag range%29.2f to%10.2f months\n\n ".concat(minlag, ", ").concat(maxlag));
-                writeFileFunc('outfile.txt', "Length of the simulation%23d months\n\n, ".concat(num_months));
-                writeFileFunc('outfile.txt', "K =%6.1f i =%6.1f h =%6.1f pi =%6.1f\n\n,".concat(setup_cost, ", ").concat(incremental_cost, ", ").concat(holding_cost, ", ").concat(shortage_cost));
-                writeFileFunc('outfile.txt', "Number of policies%29d\n\n ".concat(num_policies));
-                writeFileFunc('outfile.txt', " Average Average");
-                writeFileFunc('outfile.txt', " Average Average\n");
-                writeFileFunc('outfile.txt', " Policy total cost ordering cost");
-                writeFileFunc('outfile.txt', " holding cost shortage cost");
+                writeFileFunc('output.txt', "\n\nMean interdemand time%26.2f  ".concat(mean_interdemand, "\n\n"));
+                writeFileFunc('output.txt', "Delivery lag range%29.2f to%10.2f months\n\n ".concat(minlag, ", ").concat(maxlag));
+                writeFileFunc('output.txt', "Length of the simulation%23d months\n\n, ".concat(num_months));
+                writeFileFunc('output.txt', "K =%6.1f i =%6.1f h =%6.1f pi =%6.1f\n\n,".concat(setup_cost, ", ").concat(incremental_cost, ", ").concat(holding_cost, ", ").concat(shortage_cost));
+                writeFileFunc('output.txt', "Number of policies%29d\n\n ".concat(num_policies));
+                writeFileFunc('output.txt', " Average Average");
+                writeFileFunc('output.txt', " Average Average\n");
+                writeFileFunc('output.txt', " Policy total cost ordering cost");
+                writeFileFunc('output.txt', " holding cost shortage cost");
                 for (i = 1; i <= num_policies; ++i) {
                     // Read the inventory policy, and initialize the simulation.
                     smalls = 2;

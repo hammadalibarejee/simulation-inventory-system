@@ -1,1 +1,34 @@
- This Report generated values are 2, 10, 6.359938236068945 , 0, 6.359938236068945, 0
+Single-product inventory system
+
+"Initial inventory level 1 items
+
+Number of demand sizes 4 
+
+Distribution function of demand sizes
+
+ %f 
+
+ %f 
+
+ %f 
+
+ %f Single-product inventory system
+
+Initial inventory level 1 items
+
+ Number of demand sizes%25d   4
+
+Distribution function of demand sizes %8.3f %8.3f %8.3f %8.3f 
+
+Mean interdemand time%26.2f  5
+
+Delivery lag range%29.2f to%10.2f months
+
+ 10, NaNLength of the simulation%23d months
+
+, 2K =%6.1f i =%6.1f h =%6.1f pi =%6.1f
+
+,6, 7, 8, 9Number of policies%29d
+
+ 3 Average Average Average Average
+ Policy total cost ordering cost holding cost shortage cost This Report generated values are 2, 10, 8 , 0, 8, 0 This Report generated values are 2, 10, 8 , 0, 8, 0 This Report generated values are 2, 10, 8 , 0, 8, 0

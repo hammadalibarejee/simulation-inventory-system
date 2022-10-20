@@ -162,26 +162,32 @@ function uniform(a: number, b: number) /* Uniform variate generation function. *
     return a + lcgrand(1) * (b - a);
 }
 
+const emptyTextFile = ()=>{
+    fs.writeFileSync('output.txt','');
+}
+
 const writeFileFunc = (fileName: any, Message: string) => {
-    fs.writeFile(fileName, Message, function (err) {
-        if (err) {
-            return console.error(err);
-        }
+    fs.appendFileSync(fileName, Message
+        // function (err) {
+        // if (err) {
+        //     return console.error(err);
+        // }
 
         // If no error the remaining code executes
         // console.log(" Finished writing ");
         // console.log("Reading the data that's written");
 
         // Reading the file
-        fs.readFile(fileName, function (err, data) {
-            if (err) {
-                return console.error(err);
-            } else {
-                return data;
-            }
-            //   console.log("Data read : " + data.toString());
-        });
-    });
+    //     fs.readFile(fileName, function (err, data) {
+    //         if (err) {
+    //             return console.error(err);
+    //         } else {
+    //             return data;
+    //         }
+    //         //   console.log("Data read : " + data.toString());
+    //     });
+    // }
+    );
 }
 
 function timing() {
@@ -226,6 +232,7 @@ const readFile = async (fileName: any) => {
 }
 
 const main = async () => {
+    emptyTextFile();
     let num_policies;
 
     //Open input and output files\
@@ -261,23 +268,23 @@ const main = async () => {
     for (let i = 1; i <= num_values_demand; ++i) writeFileFunc('output.txt', `\n\n %f ${prob_distrib_demand}`);
 
     /* Write report heading and input parameters. */
-    writeFileFunc('outfile.txt', "Single-product inventory system\n\n");
-    writeFileFunc('outfile.txt', `Initial inventory level ${initial_inv_level} items\n\n `);
-    writeFileFunc('outfile.txt', `Number of demand sizes%25d   ${num_values_demand}\n\n`);
-    writeFileFunc('outfile.txt', "Distribution function of demand sizes ");
+    writeFileFunc('output.txt', "Single-product inventory system\n\n");
+    writeFileFunc('output.txt', `Initial inventory level ${initial_inv_level} items\n\n `);
+    writeFileFunc('output.txt', `Number of demand sizes%25d   ${num_values_demand}\n\n`);
+    writeFileFunc('output.txt', "Distribution function of demand sizes ");
     for (let i = 1; i <= num_values_demand; ++i) {
-        writeFileFunc('outfile.txt', `%8.3f ${prob_distrib_demand}`);
+        writeFileFunc('output.txt', `%8.3f ${prob_distrib_demand}`);
     }
 
-    writeFileFunc('outfile.txt', `\n\nMean interdemand time%26.2f  ${mean_interdemand}\n\n`);
-    writeFileFunc('outfile.txt', `Delivery lag range%29.2f to%10.2f months\n\n ${minlag}, ${maxlag}`);
-    writeFileFunc('outfile.txt', `Length of the simulation%23d months\n\n, ${num_months}`);
-    writeFileFunc('outfile.txt', `K =%6.1f i =%6.1f h =%6.1f pi =%6.1f\n\n,${setup_cost}, ${incremental_cost}, ${holding_cost}, ${shortage_cost}`);
-    writeFileFunc('outfile.txt', `Number of policies%29d\n\n ${num_policies}`);
-    writeFileFunc('outfile.txt', " Average Average");
-    writeFileFunc('outfile.txt', " Average Average\n");
-    writeFileFunc('outfile.txt', " Policy total cost ordering cost");
-    writeFileFunc('outfile.txt', " holding cost shortage cost");
+    writeFileFunc('output.txt', `\n\nMean interdemand time%26.2f  ${mean_interdemand}\n\n`);
+    writeFileFunc('output.txt', `Delivery lag range%29.2f to%10.2f months\n\n ${minlag}, ${maxlag}`);
+    writeFileFunc('output.txt', `Length of the simulation%23d months\n\n, ${num_months}`);
+    writeFileFunc('output.txt', `K =%6.1f i =%6.1f h =%6.1f pi =%6.1f\n\n,${setup_cost}, ${incremental_cost}, ${holding_cost}, ${shortage_cost}`);
+    writeFileFunc('output.txt', `Number of policies%29d\n\n ${num_policies}`);
+    writeFileFunc('output.txt', " Average Average");
+    writeFileFunc('output.txt', " Average Average\n");
+    writeFileFunc('output.txt', " Policy total cost ordering cost");
+    writeFileFunc('output.txt', " holding cost shortage cost");
 
 
     for (let i = 1; i <= num_policies; ++i) {
